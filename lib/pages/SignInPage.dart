@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:skct_chats/main.dart';
+import 'package:skct_chats/pages/GoogleInfo.dart';
 
 
 
@@ -44,7 +45,7 @@ Widget build(BuildContext context) {
          Future<UserCredential> user = signInWithGoogle();
          Navigator.push(
            context,
-           MaterialPageRoute(builder: (context) => UserInformation()),
+           MaterialPageRoute(builder: (context) => GoogleInfo()),
          );
         },
       ),
