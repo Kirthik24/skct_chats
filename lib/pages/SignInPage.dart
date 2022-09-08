@@ -3,6 +3,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:skct_chats/main.dart';
 import 'package:skct_chats/pages/GoogleInfo.dart';
+import 'package:skct_chats/pages/GroupChat.dart';
 
 
 
@@ -45,7 +46,7 @@ Widget build(BuildContext context) {
          Future<UserCredential> user = signInWithGoogle();
          Navigator.push(
            context,
-           MaterialPageRoute(builder: (context) => GoogleInfo()),
+           MaterialPageRoute(builder: (context) => const GroupChat()),
          );
         },
       ),
