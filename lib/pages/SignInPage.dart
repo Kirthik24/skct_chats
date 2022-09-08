@@ -44,9 +44,8 @@ Widget build(BuildContext context) {
          Future<UserCredential> user = signInWithGoogle();
          Navigator.push(
            context,
-           MaterialPageRoute(builder: (context) => AddUser("kirthik","google",25)),
+           MaterialPageRoute(builder: (context) => UserInformation()),
          );
-
         },
       ),
     ),
