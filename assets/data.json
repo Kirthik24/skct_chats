@@ -15,13 +15,7 @@
     "department": "ADMINISTRATION"
   },
 
-  {
-    "name": "Dr. Manju P",
-    "des": "Dean Academics and Student Affairs",
-    "phone": "7708894898",
-    "email": "dean_academics@skct.edu.in",
-    "department": "ADMINISTRATION"
-  },
+
 
   {
     "name": "Office",
@@ -365,6 +359,14 @@
   },
 
   {
+    "name": "Mr.Sujin J S",
+    "des": "Assistant Professor",
+    "phone": "8807264346",
+    "email": "sujin.js@skct.edu.in",
+    "department": "ECE"
+  },
+
+  {
     "name": "Dr.Lijo Jacob Varghese",
     "des": "Professor",
     "phone": "9842254402",
@@ -465,9 +467,16 @@
 
   {
     "name": "Dr Manju P ",
-    "des": "Dean Academics and Student Affairs ",
+    "des": "Dean Academics and Student Affairs",
     "phone": "7708894898",
     "email": "p.manju@skct.edu.in",
+    "department": "ICE"
+  },
+  {
+    "name": "Dr.K.Shanthi",
+    "des": "Associate Professor",
+    "phone": "9047917688",
+    "email": "k.shanthi@skct.edu.in",
     "department": "ICE"
   },
   {
@@ -498,13 +507,7 @@
     "email": "dhanaselvam.j@skct.edu.in",
     "department": "ICE"
   },
-  {
-    "name": "Dr.K.Shanthi",
-    "des": "Associate Professor",
-    "phone": "9047917688",
-    "email": "k.shanthi@skct.edu.in",
-    "department": "ICE"
-  },
+
 
   {
     "name": "Dr S Siamala Devi",
@@ -542,6 +545,13 @@
     "department": "IT"
   },
   {
+    "name": "Mr A Suresh Kumar",
+    "des": "Assistant Professor",
+    "phone": "9629304077",
+    "email": "a.sureshkumar@skct.edu.in",
+    "department": "IT"
+  },
+  {
     "name": "Ms.S.Madumidha",
     "des": "Assistant Professor",
     "phone": "9487208569",
@@ -555,13 +565,7 @@
     "email": "alaguvathana.p@skct.edu.in",
     "department": "IT"
   },
-  {
-    "name": "Mr A Suresh Kumar",
-    "des": "Assistant Professor",
-    "phone": "9629304077",
-    "email": "a.sureshkumar@skct.edu.in",
-    "department": "IT"
-  },
+
   {
     "name": "Ms  T Agilaharshini ",
     "des": "Assistant Professor",
@@ -699,10 +703,17 @@
     "department": "MBA"
   },
   {
-    "name": "Dr.AJafersadhiq",
+    "name": "Dr.A. Jafersadhiq",
     "des": "Associate Professor",
     "phone": "9655628346",
     "email": "jafersadhiq.a@skct.edu.in",
+    "department": "MBA"
+  },
+  {
+    "name": "Dr.M.Punitha",
+    "des": "Assistant Professor",
+    "phone": "9362293722",
+    "email": "punitha.m@skct.edu.in",
     "department": "MBA"
   },
   {
@@ -733,13 +744,7 @@
     "email": "karthikeyan.a@skct.edu.in",
     "department": "MBA"
   },
-  {
-    "name": "Dr.M.Punitha",
-    "des": "Assistant Professor",
-    "phone": "9362293722",
-    "email": "punitha.m@skct.edu.in",
-    "department": "MBA"
-  },
+
 
   {
     "name": "Dr. P. Prathap",
@@ -766,7 +771,7 @@
     "name": "Dr. N. Mohan Raj",
     "des": "Associate Professor",
     "phone": "9994750670",
-    "email": "not found",
+    "email": "n.mohanraj@skct.edu.in",
     "department": "MECH"
   },
   {
@@ -1028,3 +1033,13 @@
 
 
 ]
+
+
+
+
+
+
+
+
+
+

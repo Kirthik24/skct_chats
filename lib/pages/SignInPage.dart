@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:skct_chats/pages/ContactHomePage.dart';
 import 'package:skct_chats/pages/GroupChat.dart';
 
 
@@ -105,7 +106,7 @@ Please login with your Official mail ID to continue.''',
 
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const GroupChat()),
+                        MaterialPageRoute(builder: (context) => const ContactHomePage()),
                       );
                     },
                     style: ElevatedButton.styleFrom(primary: Colors.transparent,
