@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:skct_chats/pages/ContactListPage.dart';
+import 'package:skct_chats/pages/GroupChat.dart';
 
 class ContactHomePage extends StatefulWidget {
   const ContactHomePage({Key? key}) : super(key: key);
@@ -15,7 +16,7 @@ class _ContactHomePageState extends State<ContactHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.fromLTRB(15, 25, 15, 15),
+        padding: const EdgeInsets.fromLTRB(15, 25, 15, 75),
         child: Column(
           children: [
             Container(
@@ -97,6 +98,18 @@ class _ContactHomePageState extends State<ContactHomePage> {
             ) ,
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => const GroupChat()),
+
+          );
+        },
+        backgroundColor: Colors.lightGreen,
+        child: const Icon(Icons.chat),
       ),
     );
   }

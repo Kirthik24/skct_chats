@@ -1,6 +1,14 @@
+
+
+
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:uuid/uuid.dart';
 
 class GroupChat extends StatefulWidget {
   const GroupChat({Key? key}) : super(key: key);
@@ -14,6 +22,31 @@ class _GroupChatState extends State<GroupChat> {
   final TextEditingController _message = TextEditingController();
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  File? imageFile;
+  
+  Future getImage() async{
+    ImagePicker picker = ImagePicker();
+    
+    await picker.pickImage(source: ImageSource.gallery).then((XFile) {
+      if(XFile != null){
+        imageFile = File(XFile.path);
+        uploadImage();
+      }
+    });
+  }
+
+  Future uploadImage() async{
+    String fileName = const Uuid().v1();
+
+    var ref = FirebaseStorage.instance.ref().child('images').child("$fileName.jpg");
+
+    var uploadTask = await ref.putFile(imageFile!);
+
+    String imageUrl = await uploadTask.ref.getDownloadURL();
+
+    print(imageUrl);
+  }
 
   void onSendMessage() async {
     if (_message.text.isNotEmpty) {
@@ -95,7 +128,9 @@ class _GroupChatState extends State<GroupChat> {
                         controller: _message,
                         decoration: InputDecoration(
                             suffixIcon: IconButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                getImage();
+                              },
                               icon: Icon(Icons.photo),
                             ),
                             hintText: "Send Message",
