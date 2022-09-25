@@ -3,6 +3,10 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:skct_chats/pages/ContactHomePage.dart';
 import 'package:skct_chats/pages/GroupChat.dart';
+import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
+import 'package:flutter_firebase_chat_core/flutter_firebase_chat_core.dart';
+import 'package:skct_chats/provider/UserProvider.dart';
+
 
 
 class SignInPage extends StatefulWidget {
@@ -13,25 +17,6 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
-
-
-
-  Future<UserCredential> signInWithGoogle() async {
-    // Trigger the authentication flow
-    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-
-    // Obtain the auth details from the request
-    final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
-
-    // Create a new credential
-    final credential = GoogleAuthProvider.credential(
-      accessToken: googleAuth?.accessToken,
-      idToken: googleAuth?.idToken,
-    );
-
-    // Once signed in, return the UserCredential
-    return await FirebaseAuth.instance.signInWithCredential(credential);
-  }
 
 
   @override
@@ -102,12 +87,15 @@ Please login with your Official mail ID to continue.''',
                           colors: [Color(0xFF6451dd), Color(0xFF26a8e2)])),
                   child: ElevatedButton.icon(
                     onPressed: () {
-                       Future<UserCredential> user = signInWithGoogle();
+                       Future<UserCredential> user = UserProvider().signInWithGoogle();
 
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const ContactHomePage()),
-                      );
+                       Navigator.push(
+                         context,
+                         MaterialPageRoute(builder: (context) => const ContactHomePage()),
+                       );
+
+
+
                     },
                     style: ElevatedButton.styleFrom(primary: Colors.transparent,
                         shadowColor: Colors.transparent),

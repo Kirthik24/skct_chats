@@ -7,8 +7,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_firebase_chat_core/flutter_firebase_chat_core.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:uuid/uuid.dart';
+import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 
 class GroupChat extends StatefulWidget {
   const GroupChat({Key? key}) : super(key: key);
@@ -24,6 +26,7 @@ class _GroupChatState extends State<GroupChat> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   File? imageFile;
+
   
   Future getImage() async{
     ImagePicker picker = ImagePicker();
