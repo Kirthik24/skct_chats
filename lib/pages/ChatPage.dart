@@ -39,7 +39,7 @@ class _ChatPageState extends State<ChatPage> {
       initialData: widget.room,
       stream: FirebaseChatCore.instance.room(widget.room.id),
       builder: (context, snapshot){
-        if(snapshot.hasData){
+        if(snapshot.hasData || snapshot.hasError){
         return StreamBuilder<List<types.Message>>(
           initialData: const [],
           stream: FirebaseChatCore.instance.messages(snapshot.data ?? UserProvider().roomProvider()),
@@ -57,25 +57,22 @@ class _ChatPageState extends State<ChatPage> {
           ),
         );
         }
-        else if(snapshot.hasError){
-          return StreamBuilder<List<types.Message>>(
-            initialData: const [],
-            stream: FirebaseChatCore.instance.messages(snapshot.data ?? UserProvider().roomProvider()),
-            builder: (context, snapshot) => Chat(
-              isAttachmentUploading: _isAttachmentUploading,
-              messages: snapshot.data ?? [],
-              onAttachmentPressed: _handleAtachmentPressed,
-              onMessageTap: _handleMessageTap,
-              onPreviewDataFetched: _handlePreviewDataFetched,
-              onSendPressed: _handleSendPressed,
-              user: types.User(
-                id: FirebaseChatCore.instance.firebaseUser?.uid ?? '',
-                firstName: FirebaseChatCore.instance.firebaseUser?.displayName ?? '',
-              ),
-              showUserNames: true,
-            ),
-          );
-        }
+        // else if(snapshot.hasError){
+        //   return StreamBuilder<List<types.Message>>(
+        //     initialData: const [],
+        //     stream: FirebaseChatCore.instance.messages(snapshot.data ?? UserProvider().roomProvider()),
+        //     builder: (context, snapshot) => Chat(
+        //       isAttachmentUploading: _isAttachmentUploading,
+        //       messages: snapshot.data ?? [],
+        //       onAttachmentPressed: _handleAtachmentPressed,
+        //       onMessageTap: _handleMessageTap,
+        //       onPreviewDataFetched: _handlePreviewDataFetched,
+        //       onSendPressed: _handleSendPressed,
+        //       user: UserProvider().provideUser(),
+        //       showUserNames: true,
+        //     ),
+        //   );
+        // }
         else{
           return Container();
         }

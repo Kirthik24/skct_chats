@@ -87,14 +87,17 @@ Please login with your Official mail ID to continue.''',
                           colors: [Color(0xFF6451dd), Color(0xFF26a8e2)])),
                   child: ElevatedButton.icon(
                     onPressed: () {
-                       Future<UserCredential> user = UserProvider().signInWithGoogle();
-
+                        final FirebaseAuth _auth = FirebaseAuth.instance;
+                        if(_auth.currentUser == null){
+                          Future<UserCredential> user = UserProvider().signInWithGoogle();
+                          UserProvider().addUserToFirebase();
+                        }
+                        //UserProvider().addUserToFirebase();
                        Navigator.push(
                          context,
                          MaterialPageRoute(builder: (context) => const ContactHomePage()),
+
                        );
-
-
 
                     },
                     style: ElevatedButton.styleFrom(primary: Colors.transparent,

@@ -6,11 +6,6 @@ import 'package:flutter_firebase_chat_core/flutter_firebase_chat_core.dart';
 
 
 class UserProvider{
-  late List<types.User> user_list;
-
-
-
-
 
   Future<UserCredential> signInWithGoogle() async {
     // Trigger the authentication flow
@@ -30,24 +25,21 @@ class UserProvider{
   }
 
 
+  Future<void> addUserToFirebase() async {
+    await FirebaseChatCore.instance.createUserInFirestore(
+      types.User(
+        firstName: _auth.currentUser!.displayName,
+        // id: credential.user!.uid, // UID from Firebase Authentication
+        id: _auth.currentUser!.email!,
+      ),
+    );
+  }
+
+
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  types.User provideUser(){
-    types.User current_user = types.User(
-      id: "${_auth.currentUser!.displayName}id",
-      firstName: _auth.currentUser!.displayName
-
-    );
-
-    return current_user;
-  }
-
-
-  List<types.User> userListProvider(){
-    List<types.User> li = [provideUser()];
-    return li;
-  }
+  // Room
 
   types.Room roomProvider(){
     return types.Room(id: "42KHUVvWfv3NLpvRbXnU", type: types.RoomType.group, users: userListProvider());
@@ -74,8 +66,32 @@ class UserProvider{
     });
   }
 
+  // user
 
 
+
+  types.User provideUser(){
+    types.User current_user = types.User(
+        id: FirebaseChatCore.instance.firebaseUser?.uid ?? '',
+        firstName: _auth.currentUser!.displayName
+
+    );
+
+    return current_user;
+  }
+
+
+  List<types.User> userListProvider(){
+    List<types.User> li = [];
+    li.add(provideUser());
+    return li;
+  }
+
+
+  List<types.User> userList = [];
+
+
+  Stream collectionStream = FirebaseFirestore.instance.collection('users').snapshots();
 
 
 }
