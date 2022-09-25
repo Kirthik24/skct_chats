@@ -5,6 +5,7 @@ import 'package:skct_chats/pages/ContactHomePage.dart';
 import 'package:skct_chats/pages/GroupChat.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 import 'package:flutter_firebase_chat_core/flutter_firebase_chat_core.dart';
+import 'package:skct_chats/provider/RoomCreator.dart';
 import 'package:skct_chats/provider/UserProvider.dart';
 
 
@@ -90,12 +91,12 @@ Please login with your Official mail ID to continue.''',
                         final FirebaseAuth _auth = FirebaseAuth.instance;
                         if(_auth.currentUser == null){
                           Future<UserCredential> user = UserProvider().signInWithGoogle();
-                          UserProvider().addUserToFirebase();
+
                         }
-                        //UserProvider().addUserToFirebase();
+                        UserProvider().addUserToFirebase();
                        Navigator.push(
                          context,
-                         MaterialPageRoute(builder: (context) => const ContactHomePage()),
+                         MaterialPageRoute(builder: (context) => const RoomCreator()),
 
                        );
 

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 import 'package:flutter_firebase_chat_core/flutter_firebase_chat_core.dart';
@@ -30,7 +31,7 @@ class UserProvider{
       types.User(
         firstName: _auth.currentUser!.displayName,
         // id: credential.user!.uid, // UID from Firebase Authentication
-        id: _auth.currentUser!.email!,
+        id: FirebaseChatCore.instance.firebaseUser?.uid ?? '',
       ),
     );
   }
@@ -84,14 +85,42 @@ class UserProvider{
   List<types.User> userListProvider(){
     List<types.User> li = [];
     li.add(provideUser());
+
     return li;
   }
 
+  List<types.User> li = [];
 
-  List<types.User> userList = [];
+    void printNames() async{
+      String a = '';
+    await FirebaseFirestore.instance.collection('users').get()
+        .then((QuerySnapshot querySnapshot) {
+
+    });
+
+  }
 
 
-  Stream collectionStream = FirebaseFirestore.instance.collection('users').snapshots();
+
+  void printer() async{
+    //print(li);
+    Stream collectionStream = FirebaseFirestore.instance.collection('users').snapshots();
+
+    var data = await FirebaseFirestore.instance.collection('users').get();
+
+    for (var doc in data.docs) {
+      // print(doc["first_name"]);
+      li.add(types.User(id:doc.id, firstName:doc["firstName"]));
+
+    }
+
+    print(li);
+
+  }
+
+
+
+
 
 
 }
