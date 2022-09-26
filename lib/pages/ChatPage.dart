@@ -35,28 +35,28 @@ class _ChatPageState extends State<ChatPage> {
       systemOverlayStyle: SystemUiOverlayStyle.light,
       title: const Text('Chat'),
     ),
-    body: StreamBuilder<types.Room>(
-      initialData: widget.room,
-      stream: FirebaseChatCore.instance.room(widget.room.id),
+    body: StreamBuilder<List<types.User>>(
+      initialData: UserProvider().defaultUserListProvider(),
+      stream: UserProvider().printer().asStream(),
       builder: (context, snapshot){
-        if(snapshot.hasData || snapshot.hasError){
-        return StreamBuilder<List<types.Message>>(
-          initialData: const [],
-          stream: FirebaseChatCore.instance.messages(snapshot.data ?? UserProvider().roomProvider()),
-          builder: (context, snapshot) => Chat(
-            showUserNames: true,
-            isAttachmentUploading: _isAttachmentUploading,
-            messages: snapshot.data ?? [],
-            onAttachmentPressed: _handleAtachmentPressed,
-            onMessageTap: _handleMessageTap,
-            onPreviewDataFetched: _handlePreviewDataFetched,
-            onSendPressed: _handleSendPressed,
-            user: types.User(
-              id: FirebaseChatCore.instance.firebaseUser?.uid ?? '',
-            ),
+        if(snapshot.hasData){
+          print(snapshot);
+          return StreamBuilder<List<types.Message>>(
+                initialData: const [],
+                stream: FirebaseChatCore.instance.messages(types.Room(id: "42KHUVvWfv3NLpvRbXnU", type: types.RoomType.group, users: snapshot.data ?? UserProvider().defaultUserListProvider())),
+                builder: (context, snapshot) => Chat(
+                  isAttachmentUploading: _isAttachmentUploading,
+                  messages: snapshot.data ?? [],
+                  onAttachmentPressed: _handleAtachmentPressed,
+                  onMessageTap: _handleMessageTap,
+                  onPreviewDataFetched: _handlePreviewDataFetched,
+                  onSendPressed: _handleSendPressed,
+                  user: UserProvider().provideUser(),
+                  showUserNames: true,
+                ),
+              );
 
-          ),
-        );
+
         }
         // else if(snapshot.hasError){
         //   return StreamBuilder<List<types.Message>>(
@@ -74,6 +74,7 @@ class _ChatPageState extends State<ChatPage> {
         //     ),
         //   );
         // }
+        //types.Room(id: "42KHUVvWfv3NLpvRbXnU", type: types.RoomType.group, users: snapshot.data ?? UserProvider().defaultUserListProvider())
         else{
           return Container();
         }

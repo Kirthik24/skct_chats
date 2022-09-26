@@ -43,7 +43,7 @@ class UserProvider{
   // Room
 
   types.Room roomProvider(){
-    return types.Room(id: "42KHUVvWfv3NLpvRbXnU", type: types.RoomType.group, users: userListProvider());
+    return types.Room(id: "42KHUVvWfv3NLpvRbXnU", type: types.RoomType.group, users: defaultUserListProvider());
   }
 
   Future<void> createRoom(List<types.User> users) async {
@@ -82,13 +82,14 @@ class UserProvider{
   }
 
 
-  List<types.User> userListProvider(){
-    List<types.User> li = [const types.User(id: "0JHwUuW8FoXpoicV6IKvOqtZiK42", firstName: "20TUCS115 KIRTHIK R."),const types.User(id: "icecI10wHZPFMAq5Qumv5y9BuGc2", firstName: "Kirthik Rangaraj")];
-    // li.add(provideUser());
-    // printer().then((value) => li);
+  List<types.User> defaultUserListProvider(){
+    List<types.User> li = [];
+    li.add(provideUser());
     //print(li);
     return li;
   }
+
+
 
 
 
@@ -98,7 +99,7 @@ class UserProvider{
 
   types.User adder(types.User u){
     li2.add(u);
-    print(li2);
+    //print(li2);
     return u;
   }
 
@@ -108,10 +109,9 @@ class UserProvider{
 
     for (var doc in data.docs) {
       types.User person = types.User(id:doc.id, firstName:doc["firstName"]);
-      adder(person);
+      li.add(person);
 
     }
-
     return li;
   }
 
