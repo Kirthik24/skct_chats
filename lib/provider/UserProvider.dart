@@ -83,40 +83,47 @@ class UserProvider{
 
 
   List<types.User> userListProvider(){
+    List<types.User> li = [const types.User(id: "0JHwUuW8FoXpoicV6IKvOqtZiK42", firstName: "20TUCS115 KIRTHIK R."),const types.User(id: "icecI10wHZPFMAq5Qumv5y9BuGc2", firstName: "Kirthik Rangaraj")];
+    // li.add(provideUser());
+    // printer().then((value) => li);
+    //print(li);
+    return li;
+  }
+
+
+
+
+
+  List<types.User> li2 = [];
+
+  types.User adder(types.User u){
+    li2.add(u);
+    print(li2);
+    return u;
+  }
+
+  Future<List<types.User>> printer() async{
     List<types.User> li = [];
-    li.add(provideUser());
+    var data = await FirebaseFirestore.instance.collection('users').get();
+
+    for (var doc in data.docs) {
+      types.User person = types.User(id:doc.id, firstName:doc["firstName"]);
+      adder(person);
+
+    }
 
     return li;
   }
 
-  List<types.User> li = [];
-
-    void printNames() async{
-      String a = '';
-    await FirebaseFirestore.instance.collection('users').get()
-        .then((QuerySnapshot querySnapshot) {
-
-    });
-
-  }
 
 
 
-  void printer() async{
-    //print(li);
-    Stream collectionStream = FirebaseFirestore.instance.collection('users').snapshots();
 
-    var data = await FirebaseFirestore.instance.collection('users').get();
 
-    for (var doc in data.docs) {
-      // print(doc["first_name"]);
-      li.add(types.User(id:doc.id, firstName:doc["firstName"]));
 
-    }
 
-    print(li);
 
-  }
+
 
 
 

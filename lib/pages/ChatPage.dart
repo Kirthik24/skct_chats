@@ -44,6 +44,7 @@ class _ChatPageState extends State<ChatPage> {
           initialData: const [],
           stream: FirebaseChatCore.instance.messages(snapshot.data ?? UserProvider().roomProvider()),
           builder: (context, snapshot) => Chat(
+            showUserNames: true,
             isAttachmentUploading: _isAttachmentUploading,
             messages: snapshot.data ?? [],
             onAttachmentPressed: _handleAtachmentPressed,
@@ -53,7 +54,7 @@ class _ChatPageState extends State<ChatPage> {
             user: types.User(
               id: FirebaseChatCore.instance.firebaseUser?.uid ?? '',
             ),
-            showUserNames: true,
+
           ),
         );
         }

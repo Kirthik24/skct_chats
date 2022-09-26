@@ -96,7 +96,7 @@ Please login with your Official mail ID to continue.''',
                         UserProvider().addUserToFirebase();
                        Navigator.push(
                          context,
-                         MaterialPageRoute(builder: (context) => const RoomCreator()),
+                         MaterialPageRoute(builder: (context) => const ContactHomePage()),
 
                        );
 
