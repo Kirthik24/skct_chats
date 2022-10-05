@@ -1,8 +1,6 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:skct_chats/pages/PersonContactDetails.dart';
-
 import '../model/ContactClass.dart';
 
 class ContactListPage extends StatefulWidget {

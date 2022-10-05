@@ -1,11 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_firebase_chat_core/flutter_firebase_chat_core.dart';
 import 'package:skct_chats/pages/ChatPage.dart';
 import 'package:skct_chats/pages/ContactListPage.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
-import 'package:skct_chats/pages/GroupChat.dart';
-import 'package:skct_chats/provider/RoomCreator.dart';
 import 'package:skct_chats/provider/UserProvider.dart';
 
 
@@ -19,20 +14,6 @@ class ContactHomePage extends StatefulWidget {
 class _ContactHomePageState extends State<ContactHomePage> {
 
   final List<String> depList = ["ADMINISTRATION","CIVIL", "CSE", "ECE","EEE", "ICE", "IT", "L&D","MBA","MECH","S&H","PHY EDU"];
-
-  // //final Future<List<List<types.User>>> userlist = FirebaseChatCore.instance.users().toList();
-  // var user1 = const types.User(
-  // firstName: 'John',
-  // id: "10", // UID from Firebase Authentication
-  // imageUrl: 'https://i.pravatar.cc/300',
-  // lastName: 'Doe',
-  // );
-  //
-  //
-  //
-  //
-  //
-  // final room =  FirebaseChatCore.instance.createGroupRoom(name: "group 1", users: [] );
 
   @override
   Widget build(BuildContext context) {
