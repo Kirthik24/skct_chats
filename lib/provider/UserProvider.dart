@@ -25,6 +25,12 @@ class UserProvider{
     return await FirebaseAuth.instance.signInWithCredential(credential);
   }
 
+  Future<void> logout() async{
+      var googleSignInAccount = GoogleSignIn() ;
+      await googleSignInAccount.disconnect();
+      FirebaseAuth.instance.signOut();
+  }
+
 
   Future<void> addUserToFirebase() async {
     await FirebaseChatCore.instance.createUserInFirestore(

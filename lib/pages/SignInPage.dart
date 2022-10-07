@@ -1,6 +1,7 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:skct_chats/pages/ContactHomePage.dart';
+import 'package:skct_chats/pages/MainPage.dart';
 import 'package:skct_chats/provider/UserProvider.dart';
 
 
@@ -82,16 +83,14 @@ Please login with your Official mail ID to continue.''',
                       gradient: LinearGradient(
                           colors: [Color(0xFF6451dd), Color(0xFF26a8e2)])),
                   child: ElevatedButton.icon(
-                    onPressed: () {
+                    onPressed: () async {
                         final FirebaseAuth _auth = FirebaseAuth.instance;
-                        if(_auth.currentUser == null){
-                          Future<UserCredential> user = UserProvider().signInWithGoogle();
+                        await UserProvider().signInWithGoogle();
+                        await UserProvider().addUserToFirebase();
 
-                        }
-                        UserProvider().addUserToFirebase();
                        Navigator.push(
                          context,
-                         MaterialPageRoute(builder: (context) => const ContactHomePage()),
+                         MaterialPageRoute(builder: (context) => const MainPage()),
 
                        );
 

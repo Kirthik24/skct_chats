@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:skct_chats/pages/ChatPage.dart';
 import 'package:skct_chats/pages/ContactListPage.dart';
-import 'package:skct_chats/provider/UserProvider.dart';
+
 
 
 class ContactHomePage extends StatefulWidget {
@@ -19,7 +18,7 @@ class _ContactHomePageState extends State<ContactHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.fromLTRB(15, 25, 15, 75),
+        padding: const EdgeInsets.fromLTRB(15, 25, 15, 15),
         child: Column(
           children: [
             Container(
@@ -101,20 +100,6 @@ class _ContactHomePageState extends State<ContactHomePage> {
             ) ,
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){
-
-
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) =>  ChatPage(room: UserProvider().roomProvider())),
-
-          );
-        },
-        backgroundColor: Colors.lightGreen,
-        child: const Icon(Icons.chat),
       ),
     );
   }
